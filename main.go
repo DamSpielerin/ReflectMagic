@@ -42,7 +42,6 @@ func JSONEncode(v interface{}) ([]byte, error) {
 	buf := bytes.Buffer{}
 	values := reflect.ValueOf(v)
 	fields := reflect.TypeOf(v)
-	fmt.Println()
 	if values.Kind() != reflect.Struct {
 		return nil, errors.New("the argument is not structure")
 	}
@@ -61,7 +60,6 @@ func JSONEncode(v interface{}) ([]byte, error) {
 			if !(value.Int() == 0 && tag != "" && strings.Contains(tag, "omitempty")) {
 				buf.WriteString("\t" + field.Name + ": " + strconv.FormatInt(value.Int(), 10) + "\n")
 			}
-			fmt.Println(tag)
 		default:
 			return nil, errors.New("wrong field type")
 		}
