@@ -56,14 +56,14 @@ func JSONEncode(v interface{}) ([]byte, error) {
 		if name == "" {
 			name = field.Name
 		}
-		isOmmitempty := tag != "" && len(parts) > 1 && strings.ToLower(parts[1]) == "omitempty"
+		isOmitempty := tag != "" && len(parts) > 1 && strings.ToLower(parts[1]) == "omitempty"
 		switch value.Interface().(type) {
 		case string:
-			if !(value.String() == "" && isOmmitempty) {
+			if !(value.String() == "" && isOmitempty) {
 				buf.WriteString("\t" + name + ": \"" + value.String() + "\"\n")
 			}
 		case int64:
-			if !(value.Int() == 0 && isOmmitempty) {
+			if !(value.Int() == 0 && isOmitempty) {
 				buf.WriteString("\t" + name + ": " + strconv.FormatInt(value.Int(), 10) + "\n")
 			}
 		default:
